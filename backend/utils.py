@@ -7,8 +7,13 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 
+import toml
+
+toml_info = toml.load("./.streamlit/secrets.toml")
+openapi_key = toml_info["OPENAI_APIKEY"]
+
 def get_openapi_access_key():
-    return st.secrets["OPENAPI_KEY"]
+    return st.secrets["OPENAI_APIKEY"]
 
 def get_text_from_pdf(pdf_docs)-> str:
     """
@@ -53,13 +58,13 @@ def get_vectorstore(text_chunks:list):
     Params:
     - text_chunks: list - list of text chunks
     """
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(openai_api_key=openapi_key)
     vector_store = FAISS.from_texts(texts=text_chunks, 
                                     embedding=embeddings)
     return vector_store
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(api_key=openapi_key)
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     conversation_chain  = ConversationalRetrievalChain.from_llm(
         llm = llm, 

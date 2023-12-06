@@ -6,7 +6,8 @@ importlib.reload(backend.utils)
 from backend.utils import (get_openapi_access_key, 
                             get_text_from_pdf, 
                             get_text_chunks, 
-                            get_vector_embedding)
+                            get_vectorstore, 
+                            get_conversation_chain)
 
 OPEN_API_KEY = get_openapi_access_key()
 
@@ -27,8 +28,15 @@ def side_bar():
                 text_chunks:list = get_text_chunks(raw_text)
 
                 # vector embedding
-                vector_embedding = get_vector_embedding() 
+                vector_embedding = get_vectorstore(text_chunks)
 
+                # conversation chain
+                # initialize state
+                st.session_state.conversation = get_conversation_chain(vector_embedding)
+
+def initialize_conversation_state():
+    if "conversation" not in st.session_state:
+        st.session_state.conversation = None
 
 def main():
 
@@ -37,6 +45,8 @@ def main():
     
     st.header("Chat with multiple PDFs 📑")
     st.text_input("Ask any question about the file")
+
+    initialize_conversation_state()
 
     side_bar()    
 

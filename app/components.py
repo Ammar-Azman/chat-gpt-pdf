@@ -12,7 +12,7 @@ def side_bar():
     with st.sidebar:
         st.subheader("Hugginface LLM Model")
         hf_id = st.text_input("Hugginface ID")
-        hf_token = st.text_input("Hunggingface Token")
+        hf_token = st.text_input("Hunggingface Token", type="password")
 
         st.subheader("Your documents")
         pdf_docs = st.file_uploader(
@@ -87,6 +87,6 @@ def handle_user_input(user_question: str):
             )
         else:
             st.write(
-                bot_template.replace("{{MSG}}", f"<--{model}-->\n\n{message.content}"),
+                bot_template.replace("{{MSG}}", f"🤖-- {model}\n\n{message.content}"),
                 unsafe_allow_html=True,
             )

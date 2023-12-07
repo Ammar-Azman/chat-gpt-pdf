@@ -9,7 +9,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.llms.huggingface_hub import HuggingFaceHub
 
 import toml
-import joblib
 from huggingface_hub import hf_hub_download
 
 from pathlib import Path

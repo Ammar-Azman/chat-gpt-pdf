@@ -1,5 +1,10 @@
 # ChatGPT-PDF
 - Application to read and reason any PDF files by using LLM model.
+- [**Play with the app!**](https://the-most-awesome-chat-gpt-pdf-619619.streamlit.app/)<br><br>
+![Alt text](image.png)
+
+
+
 
 # Getting Started
 

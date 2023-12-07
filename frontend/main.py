@@ -9,6 +9,7 @@ from components import (
     side_bar,
     initial_conversation_state,
     initial_chat_history_state,
+    initial_model_state,
     handle_user_input,
 )
 from html_template import css
@@ -23,10 +24,10 @@ def main():
     with st.container(border=True):
         st.header("Chat with multiple PDFs 📑")
 
+    initial_model_state()
     initial_conversation_state()
     initial_chat_history_state()
 
-    st.empty()
     user_question = st.chat_input("Ask about your files!")
     if user_question:
         handle_user_input(user_question)

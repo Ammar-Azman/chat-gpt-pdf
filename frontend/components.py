@@ -31,6 +31,11 @@ def side_bar():
                 vector_embedding, hf_id, hf_token
             )
 
+            if hf_id:
+                st.session_state.model = hf_id
+            else:
+                st.session_state.model = "OpenAI Model"
+
             with st.spinner("Processing..."):
                 st.success("Processing completed.")
                 st.success("Start asking the AI!")
@@ -47,6 +52,11 @@ def processing_input(pdf_docs, hf_id=False, hf_file=False):
     vector_embedding = get_vectorstore(text_chunks)
 
     return vector_embedding
+
+
+def initial_model_state():
+    if "model" not in st.session_state:
+        st.session_state.model = None
 
 
 def initial_conversation_state():
@@ -68,14 +78,15 @@ def handle_user_input(user_question: str):
     response = st.session_state.conversation({"question": user_question})
     st.session_state.chat_history: list = response["chat_history"]
 
+    model = st.session_state.model
     for i, message in enumerate(st.session_state.chat_history):
         if i % 2 == 0:
             st.write(
-                user_template.replace("{{MSG}}", message.content),
+                user_template.replace("{{MSG}}", f"{message.content}"),
                 unsafe_allow_html=True,
             )
         else:
             st.write(
-                bot_template.replace("{{MSG}}", message.content),
+                bot_template.replace("{{MSG}}", f"<--{model}-->\n\n{message.content}"),
                 unsafe_allow_html=True,
             )

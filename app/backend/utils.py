@@ -12,8 +12,13 @@ import toml
 import joblib
 from huggingface_hub import hf_hub_download
 
-toml_info = toml.load("./.streamlit/secrets.toml")
-openapi_key = toml_info["OPENAI_APIKEY"]
+from pathlib import Path
+
+toml_path = Path("./.streamlit/secrets.toml")
+
+if toml_path.exists():
+    toml_info = toml.load("./.streamlit/secrets.toml")
+    openapi_key = toml_info["OPENAI_APIKEY"]
 
 
 def get_openapi_access_key():

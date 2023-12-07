@@ -26,9 +26,9 @@ python -m streamlit run frontend/main.py
 4. Insert your OpenAI api key within Secret Page in the app. 
 5. Upload files, and ask the AI about your file!
 
-## LLM Model Alternatives
+## LLM Model Secret Key
 
-1. If you are using model from OpenAI (OpenAI required some billing for you to use), please ensure to provide the `OPENAI_APIKEY`:
+1. Please ensure to provide the `OPENAI_APIKEY` from OpenAI (compulsory):
     - Within `./streamlit/secrets.toml` for **local**. (Note: please ensure to ignore toml file to avoid pushing the secret key!); or
     - Streamlit Secrets on **remote**. 
     ```toml
@@ -36,8 +36,7 @@ python -m streamlit run frontend/main.py
     OPENAI_APIKEY="your-openai-api-key-bro"
     ```
     
-
-2. If you are using model from HunggingFace, please provide Huggingface ID and Huggingface Token within the apps (see on sidebar). Most model from HF is free to use! Try `google/flan-t5-xxl` with your Huggingface Token. [create Hunggingface Token](https://huggingface.co/docs/hub/security-tokens)
+2. To use model from HunggingFace, please provide Huggingface ID and Huggingface Token within the apps (see on sidebar). Try `google/flan-t5-xxl` with your Huggingface Token. [create Hunggingface Token](https://huggingface.co/docs/hub/security-tokens)
 
 # Prompt Engineering
 

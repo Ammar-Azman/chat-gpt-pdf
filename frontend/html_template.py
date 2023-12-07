@@ -1,4 +1,4 @@
-css = '''
+css = """
 <style>
 .chat-message {
     padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; display: flex
@@ -23,22 +23,22 @@ css = '''
   padding: 0 1.5rem;
   color: #fff;
 }
-'''
+"""
 
-bot_template = '''
+bot_template = """
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png">
+        <img src="https://cdn.pixabay.com/photo/2023/03/15/16/22/robot-7854916_1280.jpg">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
-'''
+"""
 
-user_template = '''
+user_template = """
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=1366&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        <img src="https://cdn.pixabay.com/photo/2023/07/24/02/48/man-8146088_1280.jpg">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
-'''
+"""
